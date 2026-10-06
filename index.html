@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="OmegaPARK connects drivers who are leaving a parking spot with drivers who need one. Now in beta on iPhone and Android.">
+<meta name="theme-color" content="#121512">
+<meta property="og:title" content="OmegaPARK">
+<meta property="og:description" content="Leaving a spot? Someone nearby needs it. Community parking, coming soon.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23121512'/%3E%3Ctext x='32' y='47' font-family='Arial' font-size='44' font-weight='700' text-anchor='middle' fill='%236fcb00'%3E%CE%A9%3C/text%3E%3C/svg%3E">
+<style>html{background:#121512}</style>
+<title>OmegaPARK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Barlow+Condensed:ital,wght@1,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: one screen, text left, radar right; stacks on phones. Dark brand look, committed on purpose. */
+:root {
+  --bg: #121512;
+  --ink: #f1f4ec;
+  --muted: #98a393;
+  --lime: #a8ff3e;
+  --lime-deep: #6fcb00;
+  --line: #263026;
+  --panel: #171b17;
+  --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.55;
+  padding-inline: 20px;
+  padding-block: 28px 24px;
+  min-height: 100%;
+}
+.page { max-width: 1040px; margin-inline: auto; display: flex; flex-direction: column; gap: 56px; }
+.mark {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.mark .o { color: var(--lime-deep); }
+.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; }
+.eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--lime); margin: 0 0 18px; }
+h1 {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 800;
+  font-size: clamp(44px, 7vw, 84px);
+  line-height: .98;
+  letter-spacing: .005em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  margin: 0 0 24px;
+}
+h1 em { font-style: italic; color: var(--lime); }
+.lede { color: var(--muted); max-width: 34em; margin: 0 0 32px; text-wrap: pretty; }
+.status { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.status li {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: .04em;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 9px 14px;
+  border-radius: 4px;
+  display: flex; align-items: center; gap: 9px;
+}
+.status li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); }
+.soon { margin: 22px 0 0; font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: .04em; }
+
+.radar {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 0 24%, var(--line) 24.4% 24.9%, transparent 25.3% 49%, var(--line) 49.4% 49.9%, transparent 50.3% 74%, var(--line) 74.4% 74.9%, transparent 75.3%),
+    var(--panel);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.radar::before, .radar::after { content: ""; position: absolute; background: var(--line); }
+.radar::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+.radar::after { top: 50%; left: 0; right: 0; height: 1px; }
+.sweep {
+  position: absolute; inset: 0;
+  background: conic-gradient(from 0deg, rgba(168,255,62,0) 0deg, rgba(168,255,62,0) 280deg, rgba(168,255,62,.28) 359deg, rgba(168,255,62,0) 360deg);
+  animation: spin 6s linear infinite;
+}
+.me { position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 5px rgba(168,255,62,.18), 0 0 18px var(--lime); }
+.pin { position: absolute; display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .05em; white-space: nowrap; color: var(--ink); }
+.pin i { width: 9px; height: 9px; border-radius: 2px; background: var(--ink); transform: rotate(45deg); flex: none; }
+.pin.go i { background: var(--lime); }
+.pin.wait i { background: #ffb340; }
+.pin.need i { background: #5aa9ff; border-radius: 50%; }
+.p1 { left: 58%; top: 20%; }
+.p2 { left: 12%; top: 66%; }
+.p3 { left: 54%; top: 78%; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+footer { border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); }
+footer a { color: var(--ink); text-underline-offset: 3px; }
+footer a:hover { color: var(--lime); }
+a:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+
+@media (max-width: 800px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .page { gap: 40px; }
+  .radar { max-width: 340px; }
+  .pin { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .sweep { animation: none; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header><p class="mark"><span class="o">&Omega;</span>MEGA PARK</p></header>
+
+  <main class="hero">
+    <div>
+      <p class="eyebrow">Community parking</p>
+      <h1>Leaving a spot? Someone nearby <em>needs it.</em></h1>
+      <p class="lede">OmegaPARK connects drivers who are about to leave with drivers who are looking. Mark your spot, see what is opening up around you, and hand it off.</p>
+      <ul class="status">
+        <li>iPhone: beta testing</li>
+        <li>Android: beta testing</li>
+      </ul>
+      <p class="soon">Public launch coming soon.</p>
+    </div>
+
+    <div class="radar" aria-hidden="true">
+      <div class="sweep"></div>
+      <div class="me"></div>
+      <div class="pin go p1"><i></i>LEAVING NOW</div>
+      <div class="pin wait p2"><i></i>LEAVING IN 30 MIN</div>
+      <div class="pin need p3"><i></i>NEEDS A SPOT</div>
+    </div>
+  </main>
+
+  <footer>
+    <span>&copy; 2026 Absonic Studios</span>
+    <a href="https://absonicstudios.github.io/omegapark-legal/privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+</body>
+</html>
