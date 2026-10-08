@@ -6,56 +6,169 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   body { font-family: -apple-system, Helvetica, Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; color: #222; line-height: 1.6; }
-  h1 { font-size: 1.6em; }
+  h1 { font-size: 1.6em; margin-bottom: 0.2em; }
   h2 { font-size: 1.2em; margin-top: 2em; }
+  h3 { font-size: 1em; margin-top: 1.4em; }
+  .updated { color: #666; margin-top: 0; }
+  .glance { background: #f3f6fa; border-left: 4px solid #1a6fb5; padding: 4px 18px; margin: 1.5em 0; border-radius: 4px; }
+  .glance ul { padding-left: 1.2em; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.93em; margin: 1em 0; }
+  th, td { border: 1px solid #ddd; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f6f6f6; }
+  nav ul { list-style: none; padding-left: 0; columns: 2; font-size: 0.93em; }
   footer { margin-top: 3em; font-size: 0.85em; color: #666; }
+  @media (max-width: 520px) { nav ul { columns: 1; } table { font-size: 0.85em; } }
 </style>
 </head>
 <body>
 <h1>Omega:PARK Privacy Policy</h1>
-<p>Last updated: October 8, 2026</p>
+<p class="updated">Last updated: October 8, 2026</p>
 
-<p>Omega:PARK ("the App") is a community-powered parking app for finding and sharing parking spots in real time. This policy explains what information the App collects and how it is used.</p>
+<p>Omega:PARK ("the App", "we", "us") is a community-powered parking app for finding and sharing parking spots in real time. It is made by Absonic Studios. This policy explains, in plain language, what information the App collects, why, who can see it, and what control you have.</p>
 
-<h2>Information We Collect</h2>
+<div class="glance">
+<h2 style="margin-top:0.6em">The short version</h2>
 <ul>
-  <li><strong>Account information:</strong> When you create an account, we collect your email address and password. Your password is handled by our authentication provider (Supabase) and is never stored in plain text.</li>
-  <li><strong>Profile information:</strong> Display name, avatar, and any "About Me" text you choose to add.</li>
-  <li><strong>Location data:</strong> With your permission, the App accesses your device's GPS location to show your position on the map, provide turn-by-turn navigation, mark and find parking spots, and show nearby community activity. Location is only used while the App is in use, unless you separately grant background location access for active navigation.</li>
-  <li><strong>Place and destination searches:</strong> When you search for a place or destination, the text you type is sent to Google (Google Maps Platform) to return results. We do not store your searches.</li>
-  <li><strong>User-generated content:</strong> Parking spot marks, notes, community posts ("Shouts"), push-style alerts (hazards, sweepers, etc.), and messages exchanged with friends through the App.</li>
-  <li><strong>Social data:</strong> Friend connections, ratings/reliability scores, and XP/activity history generated through use of the App.</li>
-  <li><strong>Locally stored data:</strong> Your saved "Find My Car" location and app preferences (such as theme and display mode) are stored locally on your device and are not transmitted to our servers unless needed to provide the feature.</li>
+  <li><strong>We collect only what the App needs to work:</strong> your account details, your location while you use the App, and what you choose to post.</li>
+  <li><strong>We do not sell your information</strong> and we do not show ads.</li>
+  <li><strong>We do not track you</strong> across other apps or websites, and the App has no analytics or advertising tools.</li>
+  <li><strong>What you post is visible to other people</strong> (spot marks, Shouts, alerts), based on the audience you pick. Think before you share.</li>
+  <li><strong>You can delete your account</strong> at any time inside the App (Settings &rarr; Delete Account).</li>
+  <li><strong>The App is for people 18 and over.</strong></li>
+</ul>
+</div>
+
+<nav>
+<strong>Contents</strong>
+<ul>
+  <li><a href="#collect">1. What we collect</a></li>
+  <li><a href="#use">2. How we use it</a></li>
+  <li><a href="#visible">3. Who can see what</a></li>
+  <li><a href="#providers">4. Services we use</a></li>
+  <li><a href="#permissions">5. Your device permissions</a></li>
+  <li><a href="#retention">6. Keeping and deleting data</a></li>
+  <li><a href="#security">7. How we protect data</a></li>
+  <li><a href="#rights">8. Your choices and rights</a></li>
+  <li><a href="#age">9. Age requirement</a></li>
+  <li><a href="#changes">10. Changes to this policy</a></li>
+  <li><a href="#contact">11. Contact us</a></li>
+</ul>
+</nav>
+
+<h2 id="collect">1. What we collect</h2>
+
+<table>
+  <tr><th>What</th><th>Details</th><th>Why</th></tr>
+  <tr>
+    <td><strong>Account information</strong></td>
+    <td>Your email address and password. Your password is handled by our sign-in provider (Supabase) and is never stored in plain text. We cannot see it.</td>
+    <td>To create and secure your account and let you sign in.</td>
+  </tr>
+  <tr>
+    <td><strong>Profile information</strong></td>
+    <td>Your display name, avatar picture, and any "About Me" text you choose to add.</td>
+    <td>To show who you are to friends and other users.</td>
+  </tr>
+  <tr>
+    <td><strong>Location</strong></td>
+    <td>Your device's GPS location, only with your permission. It can be precise (exact position) or approximate.</td>
+    <td>To show you on the map, give turn-by-turn directions, mark and find parking spots, and show nearby community activity.</td>
+  </tr>
+  <tr>
+    <td><strong>Place and destination searches</strong></td>
+    <td>The text you type when you search for a place or address. It is sent to Google to return results. <strong>We do not store your searches.</strong></td>
+    <td>To find the place you are looking for.</td>
+  </tr>
+  <tr>
+    <td><strong>What you post</strong></td>
+    <td>Parking spot marks and notes, spot requests and offers, community posts ("Shouts"), alerts (such as hazards or street sweeping), and messages you send to friends.</td>
+    <td>To run the App's community features.</td>
+  </tr>
+  <tr>
+    <td><strong>Social and activity data</strong></td>
+    <td>Friend connections, people you block, reports you file, ratings and reliability scores, and XP / rank history.</td>
+    <td>To run friends, trust and rewards, and to keep the community safe.</td>
+  </tr>
+  <tr>
+    <td><strong>Stored only on your phone</strong></td>
+    <td>Your saved "Find My Car" location and your preferences (theme, display mode, notification settings). These are not sent to our servers.</td>
+    <td>To remember your settings and where you parked.</td>
+  </tr>
+</table>
+
+<h3>What we do <em>not</em> collect</h3>
+<p>We do not collect your phone number, contacts, payment information, advertising ID, or browsing history. The App has no advertising and no third-party analytics or crash-tracking tools.</p>
+
+<h2 id="use">2. How we use it</h2>
+<p>We use your information only to operate and protect the App:</p>
+<ul>
+  <li>show your position and give navigation directions;</li>
+  <li>let you mark, request, offer and find parking spots;</li>
+  <li>connect you with friends and show community activity (hazards, available spots, Shouts) near you;</li>
+  <li>calculate XP, ranks, and reliability ratings;</li>
+  <li>review reports and block abuse, spam or unsafe behavior;</li>
+  <li>fix problems and keep the service running.</li>
+</ul>
+<p>We do not use your information for advertising, and we do not sell it.</p>
+
+<h2 id="visible">3. Who can see what</h2>
+<ul>
+  <li><strong>Only you:</strong> your email address, password, and your saved "Find My Car" spot. Other users do not see your email.</li>
+  <li><strong>Friends and other users:</strong> your display name, avatar, "About Me", rank and reliability rating can be seen by other users of the App.</li>
+  <li><strong>Based on the audience you choose:</strong> parking spot marks, notes, Shouts and alerts you post are visible to the audience you select (for example friends only, or everyone within a chosen radius). A spot mark shows the location of the spot.</li>
+  <li><strong>Messages:</strong> visible to the friend you send them to. Messages are protected in transit but are <strong>not end-to-end encrypted</strong>, so please do not share sensitive details such as passwords or financial information in the App.</li>
+</ul>
+<p>Anything you post can be seen, copied or screenshotted by the people who can see it. We cannot control what other users do with it.</p>
+
+<h2 id="providers">4. Services we use</h2>
+<p>We share information with the following service providers only so the App can work. They act on our behalf and are not allowed to use it for their own advertising.</p>
+<ul>
+  <li><strong>Supabase</strong> &mdash; sign-in, database and real-time data hosting. Stores your account, profile, posts and messages.</li>
+  <li><strong>Google Maps Platform</strong> &mdash; maps, place search, directions and address lookup. Receives the map area being viewed, the text you search for, and route start and end points. See <a href="https://policies.google.com/privacy">Google's Privacy Policy</a>.</li>
+  <li><strong>Apple App Store / TestFlight and Google Play</strong> &mdash; distribute the App to you. They handle downloads and, for testers, installation and feedback under their own policies.</li>
+</ul>
+<p>We may also disclose information if the law requires it, or to protect the safety of users or the public. If our business were ever sold or merged, user information could transfer to the new owner, who would have to honor this policy.</p>
+<p>Our providers may process data in the United States or other countries where they operate.</p>
+
+<h2 id="permissions">5. Your device permissions</h2>
+<p>The App asks your phone for permission before it uses certain features. You can change these at any time in your phone's Settings.</p>
+<ul>
+  <li><strong>Location:</strong> used while the App is open. If you also allow "always" access, the App can keep giving navigation directions when it is in the background during active navigation. Without location, the App can still be opened, but most features will not work.</li>
+  <li><strong>Photos:</strong> only if you choose to set an avatar picture. The App reads only the picture you select.</li>
 </ul>
 
-<h2>How We Use Information</h2>
-<p>We use the information above to operate the App's core features: showing your location on the map, enabling navigation, letting you mark and find parking spots, connecting you with friends, and displaying community activity (hazards, available spots, shouts) relevant to your area.</p>
-
-<h2>How Information Is Shared</h2>
-<p>Information you choose to share (such as a parking spot mark, a community post, or a message) is visible to other users according to the audience you select (e.g. friends only, or a public radius). We do not sell your personal information to third parties.</p>
-<p>The App uses the following third-party services to operate:</p>
-<ul>
-  <li><strong>Supabase</strong> — authentication, database, and real-time data hosting.</li>
-  <li><strong>Google Maps Platform</strong> — maps, navigation, and places/directions data.</li>
-</ul>
-
-<h2>Data Retention and Deletion</h2>
-<p>Your account data is retained as long as your account is active. You can permanently delete your account at any time from Settings &rarr; Delete Account, directly in the App.</p>
+<h2 id="retention">6. Keeping and deleting data</h2>
+<p>We keep your account data for as long as your account is active.</p>
+<p>You can permanently delete your account at any time in the App: <strong>Settings &rarr; Delete Account</strong>. You can also email <a href="mailto:privacy@omegapark.app">privacy@omegapark.app</a> or follow the steps at <a href="/delete-account.html">omegapark.app/delete-account.html</a>.</p>
 <p>When you delete your account:</p>
 <ul>
-  <li><strong>Permanently deleted:</strong> your login credentials, profile, friend connections, private messages, and any active/unclaimed parking spot marks.</li>
-  <li><strong>Retained in anonymized form:</strong> community posts ("Shouts"), reliability ratings you gave or received, and completed parking handoffs are kept so that other users' history and ratings remain accurate. These records are reassigned to a generic "Deleted User" placeholder with no link back to your identity &mdash; your name, email, and profile are not retained alongside them.</li>
+  <li><strong>Permanently deleted:</strong> your login details, profile, friend connections, private messages, and any active or unclaimed parking spot marks.</li>
+  <li><strong>Kept in anonymous form:</strong> community posts ("Shouts"), reliability ratings you gave or received, and completed parking handoffs. These are kept so other users' history and ratings stay accurate. They are reassigned to a generic "Deleted User" placeholder, with no link back to your name, email or profile.</li>
 </ul>
-<p>You can also request deletion by contacting us at the email address below, or follow the steps at <a href="/delete-account.html">omegapark.app/delete-account.html</a>.</p>
 
-<h2>Children's Privacy</h2>
-<p>The App is not directed at children under 13, and we do not knowingly collect personal information from children under 13.</p>
+<h2 id="security">7. How we protect data</h2>
+<p>Data travels between the App and our servers over encrypted (HTTPS) connections. Our database uses access rules so that users can only read and change the information they are allowed to. Passwords are handled by our sign-in provider and are never stored in plain text.</p>
+<p>No system is perfectly secure, and we cannot guarantee absolute security. If we learn of a data breach that affects you, we will tell you as the law requires.</p>
 
-<h2>Changes to This Policy</h2>
-<p>We may update this policy from time to time. Changes will be posted on this page with an updated revision date.</p>
+<h2 id="rights">8. Your choices and rights</h2>
+<ul>
+  <li><strong>Access and correction:</strong> you can view and edit your profile in the App.</li>
+  <li><strong>Deletion:</strong> delete your account in the App, or ask us (see section 6).</li>
+  <li><strong>Location:</strong> turn it off in your phone's Settings at any time.</li>
+  <li><strong>Notifications and visibility:</strong> choose your audience for each post, and manage notification settings in the App.</li>
+  <li><strong>Blocking and reporting:</strong> block any user or report content from inside the App.</li>
+  <li><strong>Other rights:</strong> depending on where you live (for example the EU/UK or California), you may have additional rights, such as asking for a copy of your data or objecting to certain uses. Email <a href="mailto:privacy@omegapark.app">privacy@omegapark.app</a> and we will respond within a reasonable time, normally within 30 days.</li>
+</ul>
+<p>We do not sell or share your personal information for advertising, and we do not track you across other companies' apps and websites.</p>
 
-<h2>Contact Us</h2>
-<p>Questions about this policy or your data can be directed to: <a href="mailto:privacy@omegapark.app">privacy@omegapark.app</a></p>
+<h2 id="age">9. Age requirement</h2>
+<p>Omega:PARK is intended for people who are <strong>18 or older</strong>. We do not knowingly collect information from anyone under 18. If you believe a young person has created an account, please contact us and we will delete it.</p>
+
+<h2 id="changes">10. Changes to this policy</h2>
+<p>We may update this policy from time to time. We will post the new version on this page and change the "Last updated" date. If a change is significant, we will also tell you in the App.</p>
+
+<h2 id="contact">11. Contact us</h2>
+<p>Questions about this policy or your data? Email <a href="mailto:privacy@omegapark.app">privacy@omegapark.app</a>.</p>
 
 <footer>&copy; 2026 Absonic Studios</footer>
 </body>
