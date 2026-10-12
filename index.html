@@ -4,25 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="OmegaPARK connects drivers who are leaving a parking spot with drivers who need one. Now in beta on iPhone and Android.">
-<meta name="theme-color" content="#121512">
+<meta name="theme-color" content="#070907">
 <meta property="og:title" content="OmegaPARK">
 <meta property="og:description" content="Leaving a spot? Someone nearby needs it. Community parking, coming soon.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23121512'/%3E%3Ctext x='32' y='47' font-family='Arial' font-size='44' font-weight='700' text-anchor='middle' fill='%236fcb00'%3E%CE%A9%3C/text%3E%3C/svg%3E">
-<style>html{background:#121512}</style>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>html{background:#070907}</style>
 <title>OmegaPARK</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Barlow+Condensed:ital,wght@1,800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout: one screen, text left, radar right; stacks on phones. Dark brand look, committed on purpose. */
+/* Mirrors the dark flyer: centred column, logo on top, headline, QR card, names at the bottom. */
 :root {
-  --bg: #121512;
+  --bg: #070907;
   --ink: #f1f4ec;
-  --muted: #98a393;
+  --muted: #9aa595;
   --lime: #a8ff3e;
-  --lime-deep: #6fcb00;
+  --deep: #00501e;
   --line: #263026;
-  --panel: #171b17;
+  --panel: #131713;
+  --card: #f6f8f3;
   --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
   --body: "Barlow", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
@@ -31,145 +33,122 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  background: var(--bg);
+  background: radial-gradient(ellipse 80% 45% at 50% 0%, #10240a 0%, var(--bg) 70%) no-repeat, var(--bg);
   color: var(--ink);
   font-family: var(--body);
   font-size: 18px;
   line-height: 1.55;
-  padding-inline: 20px;
-  padding-block: 28px 24px;
-  min-height: 100%;
+  padding: 36px 20px 28px;
+  min-height: 100vh;
 }
-.page { max-width: 1040px; margin-inline: auto; display: flex; flex-direction: column; gap: 56px; }
-.mark {
-  font-family: var(--display);
-  font-style: italic;
-  font-weight: 800;
-  font-size: 40px;
-  line-height: 1;
-  letter-spacing: .01em;
-  text-transform: uppercase;
-  margin: 0;
-}
-.mark .o { color: var(--lime-deep); }
-.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; }
-.eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--lime); margin: 0 0 18px; }
+.page { max-width: 860px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: 36px; text-align: center; }
+.logo { display: block; width: min(520px, 78vw); height: auto; }
 h1 {
   font-family: var(--display);
-  font-style: italic;
-  font-weight: 800;
-  font-size: clamp(44px, 7vw, 84px);
-  line-height: .98;
-  letter-spacing: .005em;
-  text-transform: uppercase;
+  font-weight: 700;
+  font-size: clamp(42px, 9vw, 84px);
+  line-height: 1.02;
+  margin: 0;
+  color: var(--lime);
   text-wrap: balance;
-  margin: 0 0 24px;
 }
-h1 em { font-style: italic; color: var(--lime); }
-.lede { color: var(--muted); max-width: 34em; margin: 0 0 32px; text-wrap: pretty; }
-.status { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.lede { color: var(--muted); max-width: 34em; margin: 0; font-size: 19px; text-wrap: pretty; }
+.tagline { font-family: var(--display); font-weight: 600; font-size: 22px; letter-spacing: .04em; color: var(--ink); margin: 0; }
+.feats, .status { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.feats li {
+  font-family: var(--display); font-weight: 600; font-size: 18px; letter-spacing: .06em; text-transform: uppercase;
+  border: 2px solid var(--lime); border-radius: 999px; padding: 7px 20px; color: var(--ink);
+}
 .status li {
-  font-family: var(--mono);
-  font-size: 13px;
-  letter-spacing: .04em;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  padding: 9px 14px;
-  border-radius: 4px;
-  display: flex; align-items: center; gap: 9px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .05em; border: 1px solid var(--line); background: var(--panel);
+  padding: 8px 14px; border-radius: 4px; display: flex; align-items: center; gap: 9px; color: var(--muted);
 }
 .status li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px var(--lime); }
-.soon { margin: 22px 0 0; font-family: var(--mono); font-size: 13px; color: var(--muted); letter-spacing: .04em; }
-.stores { margin-top: 30px; }
+
+.cta {
+  width: 100%; background: var(--card); color: #121a12; border-radius: 28px; padding: 26px;
+  display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 28px; align-items: center; text-align: left;
+}
+.cta img { width: 210px; height: 210px; display: block; border-radius: 6px; image-rendering: pixelated; }
+.cta h2 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 5vw, 42px); line-height: 1.05; margin: 0 0 10px; text-transform: uppercase; }
+.cta p { margin: 0 0 16px; color: #3c443c; font-size: 18px; }
+.btn {
+  display: inline-block; background: var(--deep); color: #fff; text-decoration: none; font-family: var(--display); font-weight: 700;
+  font-size: 22px; letter-spacing: .06em; text-transform: uppercase; padding: 12px 28px; border-radius: 999px;
+}
+.btn:hover { background: #006b28; }
+.cta small { display: block; margin-top: 12px; color: #3c443c; font-size: 15px; }
+.cta small a { color: #121a12; text-underline-offset: 3px; }
+
 .stores-label { font-family: var(--mono); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--lime); margin: 0 0 12px; }
-.stores-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.stores-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .store-btn { display: inline-flex; align-items: center; gap: 12px; min-width: 190px; padding: 12px 18px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--muted); font-family: var(--body); font-size: 18px; font-weight: 500; line-height: 1.15; cursor: not-allowed; opacity: .85; }
-.store-btn small { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
 .store-btn svg { width: 24px; height: 24px; flex: none; }
 
-.radar {
-  position: relative;
-  width: 100%;
-  max-width: 420px;
-  aspect-ratio: 1;
-  margin-inline: auto;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, transparent 0 24%, var(--line) 24.4% 24.9%, transparent 25.3% 49%, var(--line) 49.4% 49.9%, transparent 50.3% 74%, var(--line) 74.4% 74.9%, transparent 75.3%),
-    var(--panel);
-  border: 1px solid var(--line);
-  overflow: hidden;
-}
-.radar::before, .radar::after { content: ""; position: absolute; background: var(--line); }
-.radar::before { left: 50%; top: 0; bottom: 0; width: 1px; }
-.radar::after { top: 50%; left: 0; right: 0; height: 1px; }
-.sweep {
-  position: absolute; inset: 0;
-  background: conic-gradient(from 0deg, rgba(168,255,62,0) 0deg, rgba(168,255,62,0) 280deg, rgba(168,255,62,.28) 359deg, rgba(168,255,62,0) 360deg);
-  animation: spin 6s linear infinite;
-}
-.me { position: absolute; left: 50%; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 5px rgba(168,255,62,.18), 0 0 18px var(--lime); }
-.pin { position: absolute; display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 11px; letter-spacing: .05em; white-space: nowrap; color: var(--ink); }
-.pin i { width: 9px; height: 9px; border-radius: 2px; background: var(--ink); transform: rotate(45deg); flex: none; }
-.pin.go i { background: var(--lime); }
-.pin.wait i { background: #ffb340; }
-.pin.need i { background: #5aa9ff; border-radius: 50%; }
-.p1 { left: 58%; top: 20%; }
-.p2 { left: 12%; top: 66%; }
-.p3 { left: 54%; top: 78%; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-footer { border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); }
+.credits { font-family: var(--display); font-weight: 600; font-size: 18px; letter-spacing: .08em; color: var(--ink); display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px; margin: 0; padding-top: 26px; border-top: 1px solid var(--line); width: 100%; }
+.credits span.mid { font-family: var(--body); font-weight: 400; font-size: 14px; color: var(--muted); }
+footer { width: 100%; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 14px; color: var(--muted); text-align: left; }
 footer a { color: var(--ink); text-underline-offset: 3px; }
 footer a:hover { color: var(--lime); }
 a:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
 
-@media (max-width: 800px) {
-  .hero { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-  .page { gap: 40px; }
-  .radar { max-width: 340px; }
-  .pin { font-size: 10px; }
+@media (max-width: 640px) {
+  body { padding-top: 24px; }
+  .page { gap: 30px; }
+  .cta { grid-template-columns: minmax(0, 1fr); text-align: center; padding: 22px; }
+  .cta img { display: none; }            /* a QR code is pointless on the phone it would be scanned from */
+  .credits { flex-direction: column; align-items: center; gap: 4px; }
+  footer { justify-content: center; text-align: center; }
 }
-@media (prefers-reduced-motion: reduce) { .sweep { animation: none; } }
 </style>
 </head>
 <body>
 
 <div class="page">
-  <header><p class="mark"><span class="o">&Omega;</span>MEGA PARK</p></header>
+  <header><img class="logo" src="assets/logo.png" alt="OmegaPARK" width="1200" height="955"></header>
 
-  <main class="hero">
-    <div>
-      <p class="eyebrow">Community parking</p>
-      <h1>Leaving a spot? Someone nearby <em>needs it.</em></h1>
-      <p class="lede">OmegaPARK connects drivers who are about to leave with drivers who are looking. Mark your spot, see what is opening up around you, and hand it off.</p>
-      <ul class="status">
-        <li>iPhone: beta testing</li>
-        <li>Android: beta testing</li>
-      </ul>
-      <div class="stores">
-        <p class="stores-label">Available soon on:</p>
-        <div class="stores-row">
-          <button class="store-btn" type="button" disabled aria-disabled="true" title="Coming soon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Google Play</span>
-          </button>
-          <button class="store-btn" type="button" disabled aria-disabled="true" title="Coming soon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>App Store</span>
-          </button>
-        </div>
+  <main style="display:contents">
+    <h1>Leaving a spot? Someone nearby needs it.</h1>
+    <p class="tagline">The community parking app. Drivers helping drivers.</p>
+    <p class="lede">OmegaPARK connects drivers who are about to leave with drivers who are looking. Mark your spot, see what is opening up around you, and hand it off.</p>
+
+    <ul class="feats">
+      <li>Mark your spot</li>
+      <li>Find a spot</li>
+      <li>Help the next driver</li>
+    </ul>
+
+    <section class="cta" aria-labelledby="cta-title">
+      <img src="assets/qr.png" alt="QR code for omegapark.app" width="560" height="560">
+      <div>
+        <h2 id="cta-title">Be one of the first to test it</h2>
+        <p>Help us shape OmegaPARK before it launches.</p>
+        <a class="btn" href="mailto:support@omegapark.app?subject=Join%20the%20OmegaPARK%20beta">Join the beta</a>
+        <small>or email <a href="mailto:support@omegapark.app">support@omegapark.app</a></small>
+      </div>
+    </section>
+
+    <ul class="status">
+      <li>iPhone: beta testing</li>
+      <li>Android: beta testing</li>
+    </ul>
+
+    <div class="stores">
+      <p class="stores-label">Available soon on:</p>
+      <div class="stores-row">
+        <button class="store-btn" type="button" disabled aria-disabled="true" title="Coming soon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Google Play</span>
+        </button>
+        <button class="store-btn" type="button" disabled aria-disabled="true" title="Coming soon">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v10m0 0l-4-4m4 4l4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>App Store</span>
+        </button>
       </div>
     </div>
-
-    <div class="radar" aria-hidden="true">
-      <div class="sweep"></div>
-      <div class="me"></div>
-      <div class="pin go p1"><i></i>LEAVING NOW</div>
-      <div class="pin wait p2"><i></i>LEAVING IN 30 MIN</div>
-      <div class="pin need p3"><i></i>NEEDS A SPOT</div>
-    </div>
   </main>
+
+  <p class="credits"><span>A.BOURAS</span><span class="mid">MADE IN ASTORIA</span><span>L.SOUMBASAKIS</span></p>
 
   <footer>
     <span>&copy; 2026 Absonic Studios</span>
