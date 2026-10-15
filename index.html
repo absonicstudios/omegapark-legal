@@ -33,7 +33,7 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  background: radial-gradient(ellipse 80% 45% at 50% 0%, #10240a 0%, var(--bg) 70%) no-repeat, var(--bg);
+  background: transparent;
   color: var(--ink);
   font-family: var(--body);
   font-size: 18px;
@@ -100,9 +100,52 @@ a:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
   .credits { flex-direction: column; align-items: center; gap: 4px; }
   footer { justify-content: center; text-align: center; }
 }
+
+/* Drifting map background (NYC street data, drawn as one image; no map service involved) */
+.map-bg { position: fixed; inset: 0; overflow: hidden; z-index: -1; background: #050705; }
+.map-bg img {
+  position: absolute; left: 0; top: 0; width: 320vmax; max-width: none; height: auto;
+  transform: translate(-52.0%, -36.0%) scale(1.05);
+  transform-origin: 0 0;
+  animation: drift 90s linear infinite;
+  will-change: transform;
+}
+.map-bg::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 38%, rgba(5,7,5,.62) 0%, rgba(5,7,5,.30) 60%, rgba(5,7,5,.72) 100%),
+    linear-gradient(to bottom, rgba(5,7,5,.55) 0%, rgba(5,7,5,0) 25%, rgba(5,7,5,0) 70%, rgba(5,7,5,.8) 100%);
+}
+@keyframes drift {
+  0.0% { transform: translate(-46.50%, -36.00%) scale(1.05); }
+  6.25% { transform: translate(-46.92%, -32.56%) scale(1.05); }
+  12.5% { transform: translate(-48.11%, -29.64%) scale(1.05); }
+  18.75% { transform: translate(-49.90%, -27.69%) scale(1.05); }
+  25.0% { transform: translate(-52.00%, -27.00%) scale(1.05); }
+  31.25% { transform: translate(-54.10%, -27.69%) scale(1.05); }
+  37.5% { transform: translate(-55.89%, -29.64%) scale(1.05); }
+  43.75% { transform: translate(-57.08%, -32.56%) scale(1.05); }
+  50.0% { transform: translate(-57.50%, -36.00%) scale(1.05); }
+  56.25% { transform: translate(-57.08%, -39.44%) scale(1.05); }
+  62.5% { transform: translate(-55.89%, -42.36%) scale(1.05); }
+  68.75% { transform: translate(-54.10%, -44.31%) scale(1.05); }
+  75.0% { transform: translate(-52.00%, -45.00%) scale(1.05); }
+  81.25% { transform: translate(-49.90%, -44.31%) scale(1.05); }
+  87.5% { transform: translate(-48.11%, -42.36%) scale(1.05); }
+  93.75% { transform: translate(-46.92%, -39.44%) scale(1.05); }
+  100.0% { transform: translate(-46.50%, -36.00%) scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) { .map-bg img { animation: none; transform: translate(-52%, -36%); } }
+.credit { font-size: 12px; color: var(--muted); opacity: .8; }
 </style>
 </head>
 <body>
+<div class="map-bg" aria-hidden="true">
+  <picture>
+    <source media="(max-width: 700px)" srcset="assets/map_mobile.webp" type="image/webp">
+    <img src="assets/map_desktop.webp" alt="" width="3860" height="3825" decoding="async" fetchpriority="low">
+  </picture>
+</div>
 
 <div class="page">
   <header><img class="logo" src="assets/logo.png" alt="OmegaPARK" width="1200" height="955"></header>
@@ -151,7 +194,7 @@ a:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
   <p class="credits"><span class="mid">MADE IN ASTORIA</span></p>
 
   <footer>
-    <span>&copy; 2026 Absonic Studios</span>
+    <span>&copy; 2026 Absonic Studios <span class="credit">&middot; Map data &copy; City of New York (NYC Open Data)</span></span>
     <span><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/delete-account.html">Delete account</a> &middot; <a href="mailto:support@omegapark.app">support@omegapark.app</a></span>
   </footer>
 </div>
